@@ -1,0 +1,177 @@
+<?xml version="1.0"?><!--
+/**
+ * Copyright © 2024 Magento. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <section id="payment">
+            <group id="magekc_rsppayment" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Rising Sun Payment</label>
+                <field id="active" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Enabled</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="title" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Title</label>
+                    <depends>
+                        <field id="active">1</field>
+                    </depends>
+                </field>
+                <field id="environment" translate="label" type="select" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Environment</label>
+                    <depends>
+                        <field id="active">1</field>
+                    </depends>
+                    <source_model>Magekc\Rsppayment\Model\Adminhtml\Source\Environment</source_model>
+                </field>
+                <field id="order_status" translate="label" type="select" sortOrder="120" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>New Order Status</label>
+                    <depends>
+                        <field id="active">1</field>
+                    </depends>
+                    <source_model>Magento\Sales\Model\Config\Source\Order\Status\NewStatus</source_model>
+                </field>
+                <!-- Live cred -->
+                <field id="merchant_id" translate="label" sortOrder="126" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Merchant ID</label>
+                    <depends>
+                        <field id="environment">production</field>
+                        <field id="active">1</field>
+                    </depends>
+                </field>
+                <field id="account_id" translate="label" sortOrder="130" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Account ID</label>
+                    <depends>
+                        <field id="environment">production</field>
+                        <field id="active">1</field>
+                    </depends>
+                </field>
+                <field id="username" translate="label" sortOrder="135" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Username</label>
+                    <depends>
+                        <field id="environment">production</field>
+                        <field id="active">1</field>
+                    </depends>
+                </field>
+                <field id="password" translate="label" type="obscure" sortOrder="140" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Password</label>
+                    <backend_model>Magento\Config\Model\Config\Backend\Encrypted</backend_model>
+                    <depends>
+                        <field id="environment">production</field>
+                        <field id="active">1</field>
+                    </depends>
+                </field>
+                <field id="merchant_secret_key" translate="label" type="obscure" sortOrder="150" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Secret Key</label>
+                    <backend_model>Magento\Config\Model\Config\Backend\Encrypted</backend_model>
+                    <depends>
+                        <field id="environment">production</field>
+                        <field id="active">1</field>
+                    </depends>
+                </field>
+                <field id="merchant_gateway_url" translate="label" sortOrder="151" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Api Gateway Url</label>
+                    <depends>
+                        <field id="environment">production</field>
+                        <field id="active">1</field>
+                    </depends>
+                </field>
+                <!-- Staging -->
+                <field id="test_merchant_id" translate="label" sortOrder="155" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Sandbox Merchant ID</label>
+                    <depends>
+                        <field id="environment">sandbox</field>
+                        <field id="active">1</field>
+                    </depends>
+                </field>
+                <field id="test_account_id" translate="label" sortOrder="160" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Sandbox Account ID</label>
+                    <depends>
+                        <field id="environment">sandbox</field>
+                        <field id="active">1</field>
+                    </depends>
+                </field>
+                <field id="test_username" translate="label" sortOrder="165" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Sandbox Username</label>
+                    <depends>
+                        <field id="environment">sandbox</field>
+                        <field id="active">1</field>
+                    </depends>
+                </field>
+                <field id="test_password" translate="label" type="obscure" sortOrder="170" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Sandbox Password</label>
+                    <backend_model>Magento\Config\Model\Config\Backend\Encrypted</backend_model>
+                    <depends>
+                        <field id="environment">sandbox</field>
+                        <field id="active">1</field>
+                    </depends>
+                </field>
+                <field id="test_merchant_secret_key" translate="label" type="obscure" sortOrder="175" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Sandbox Secret Key</label>
+                    <backend_model>Magento\Config\Model\Config\Backend\Encrypted</backend_model>
+                    <depends>
+                        <field id="environment">sandbox</field>
+                        <field id="active">1</field>
+                    </depends>
+                </field>
+                <field id="test_merchant_gateway_url" translate="label" sortOrder="176" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Test Api Gateway Url</label>
+                    <depends>
+                        <field id="environment">sandbox</field>
+                        <field id="active">1</field>
+                    </depends>
+                </field>
+                <!-- End staging -->
+                <field id="allowspecific" translate="label" type="allowspecific" sortOrder="180" showInDefault="9"
+                       showInWebsite="1" showInStore="0">
+                    <label>Payment From Applicable Countries</label>
+                    <depends>
+                        <field id="active">1</field>
+                    </depends>
+                    <source_model>Magento\Payment\Model\Config\Source\Allspecificcountries</source_model>
+                </field>
+                <field id="specificcountry" translate="label" type="multiselect" sortOrder="185" showInDefault="1"
+                       showInWebsite="1" showInStore="0">
+                    <label>Payment From Specific Countries</label>
+                    <depends>
+                        <field id="active">1</field>
+                    </depends>
+                    <source_model>Magento\Directory\Model\Config\Source\Country</source_model>
+                </field>
+                <field id="min_order_total" translate="label" type="text" sortOrder="190" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Minimum Order Total</label>
+                    <depends>
+                        <field id="active">1</field>
+                    </depends>
+                </field>
+                <field id="max_order_total" translate="label" type="text" sortOrder="195" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Maximum Order Total</label>
+                    <depends>
+                        <field id="active">1</field>
+                    </depends>
+                    <comment>Leave empty to disable limit</comment>
+                </field>
+                <field id="req_returnurl" translate="label" type="text" sortOrder="200" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Return URL</label>
+                    <depends>
+                        <field id="active">1</field>
+                    </depends>
+                    <comment>Return to site after redirect to payment gateway.</comment>
+                </field>
+                <field id="sort_order" translate="label" type="text" sortOrder="205" showInDefault="1" showInWebsite="1"
+                       showInStore="0">
+                    <label>Sort Order</label>
+                    <depends>
+                        <field id="active">1</field>
+                    </depends>
+                    <frontend_class>validate-number</frontend_class>
+                    <depends>
+                        <field id="active">1</field>
+                    </depends>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>
