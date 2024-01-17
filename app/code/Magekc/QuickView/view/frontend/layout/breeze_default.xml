@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceBlock name="breeze.js">
+            <arguments>
+                <argument name="bundles" xsi:type="array">
+                    <item name="default" xsi:type="array">
+                        <item name="items" xsi:type="array">
+                            <item name="mageQuickView" xsi:type="string">Magekc_QuickView/js/quick-view</item>
+                            <item name="swatch-renderer" xsi:type="string">Magekc_QuickView/js/swatch-renderer</item>
+                        </item>
+                    </item>
+                </argument>
+            </arguments>
+        </referenceBlock>
+    </body>
+</page>
