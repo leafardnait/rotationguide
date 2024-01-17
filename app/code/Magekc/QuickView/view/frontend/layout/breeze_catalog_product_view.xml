@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceContainer name="breeze.container">
+            <block class="Swissup\Breeze\Block\KoTemplate"
+                name="breeze.breadcrumbs"
+                template="Swissup_Breeze::ko/theme/breadcrumbs.phtml"/>
+        </referenceContainer>
+
+        <referenceBlock name="product.info.media.image" template="Swissup_Breeze::catalog/product/gallery.phtml"/>
+        <referenceContainer name="skip_gallery_before.wrapper" remove="true"/>
+        <referenceContainer name="skip_gallery_after.wrapper" remove="true"/>
+        <referenceBlock name="skip_gallery_after.target" remove="true"/>
+        <referenceBlock name="skip_gallery_before.target" remove="true"/>
+    </body>
+</page>

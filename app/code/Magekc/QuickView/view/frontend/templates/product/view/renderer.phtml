@@ -1,0 +1,24 @@
+<?php
+/** @var $block \Magento\Swatches\Block\Product\Renderer\Listing\Configurable */
+$productId = $block->getProduct()->getId();
+?>
+<div class="swatch-opt customswatch-opt-<?= /* @escapeNotVerified */ $block->getProduct()->getId() ?>"></div>
+<script>
+    require([
+        'jquery',
+        'jquery/ui',
+        'Swissup_Breeze/js/components/swatch-renderer',
+       ], function ($) {
+        var jsonConfig = <?= /* @escapeNotVerified */ $block->getJsonConfig() ?>;
+
+        $('.customswatch-opt-<?= /* @escapeNotVerified */ $block->getProduct()->getId() ?>').customSwatchRenderer({
+            selectorProduct: '.product-item-details',
+            onlySwatches: true,
+            numberToShow: <?= /* @escapeNotVerified */ $block->getNumberSwatchesPerProduct() ?>,
+            customjsonConfig: jsonConfig,
+            customjsonSwatchConfig: <?= /* @escapeNotVerified */ $block->getJsonSwatchConfig() ?>,
+
+        });
+
+    });
+</script>

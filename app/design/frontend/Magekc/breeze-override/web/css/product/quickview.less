@@ -1,0 +1,50 @@
+@critical: true;
+& when (@critical = true) {
+    .btn-quickview {
+        &::before {
+            width: 2rem;
+            height: 2rem;
+            content:'';
+            display:block;
+            color:#757677;
+            background-color: currentColor;
+            -webkit-mask: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" /><path stroke-linecap="round" stroke-linejoin="round" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" /></svg>') no-repeat 50% 50%;
+            -webkit-mask-size: 1.5rem 1.5rem;
+        }
+        span {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0,0,0,0);
+        }
+    }
+        
+    .quick-view-popup {
+        .modal-inner-wrap {
+            max-width: 60%;
+            .quickview-wrap {
+                display: grid;
+                grid-template-rows: auto 1fr;
+                row-gap: 0;
+                column-gap: 1rem;
+                grid-template-columns: 4fr 3fr;
+                grid-template-areas:
+                    "media title"
+                    "media main";
+
+                .page-title-wrapper {
+                    grid-area: title;
+                }
+                .product-info-main {
+                    grid-area: main;
+                }
+                .product.media {
+                    grid-area: media;
+                }
+            }
+        }
+    }
+    
+}
