@@ -23,7 +23,7 @@ class Payment extends \Magento\Payment\Model\Method\AbstractMethod
 
     protected $_code = self::CODE;
     
-    protected $_supportedCurrencyCodes = array('EUR','JPY','SGD','USD');
+    protected $_supportedCurrencyCodes = array('EUR','JPY','SGD','USD','KRW');
 
     /**
      * Determine method availability based on quote amount and config data
