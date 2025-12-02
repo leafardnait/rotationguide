@@ -32,7 +32,7 @@ class PaymentMethodDisable implements ObserverInterface
     public function execute(\Magento\Framework\Event\Observer $observer)
     {
         // you can replace "checkmo" with your required payment method code
-        $paymentCurrencyAllowed = ['EUR','JPY','SGD','USD'];
+        $paymentCurrencyAllowed = ['EUR','JPY','SGD','USD','KRW'];
         if($observer->getEvent()->getMethodInstance()->getCode()=="magekc_rsppayment"){
             $isAvailable = false;
             if (in_array($this->getCurrentCurrencyCode(), $paymentCurrencyAllowed)) {
