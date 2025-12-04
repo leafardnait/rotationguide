@@ -12,32 +12,28 @@
  * @author   Kristian Claridad<kristianrafael.claridad@gmail.com>
  */
 
-namespace Magekc\CustomPrice\Model;
+namespace Magekc\CustomPrice\Plugin;
 
-use Magento\Framework\Pricing\PriceCurrency as CorePriceCurrency;
+use Magento\Framework\Pricing\PriceCurrencyInterface;
 
-class PriceCurrency extends CorePriceCurrency
+class PriceCurrencyPlugin
 {
     /**
-     * Override format to round off decimals
+     * Round all prices to whole numbers and force precision = 0
      */
-    public function format(
+    public function aroundFormat(
+        PriceCurrencyInterface $subject,
+        callable $proceed,
         $amount,
         $includeContainer = true,
-        $precision = 0,
+        $precision = null,
         $scope = null,
         $currency = null
     ) {
-        // Round to nearest whole number
         $roundedAmount = round($amount);
 
-        return parent::format(
-            $roundedAmount,
-            $includeContainer,
-            0, // force precision = 0
-            $scope,
-            $currency
-        );
+        // Force precision to 0 for display
+        return $proceed($roundedAmount, $includeContainer, 0, $scope, $currency);
     }
 }
 
