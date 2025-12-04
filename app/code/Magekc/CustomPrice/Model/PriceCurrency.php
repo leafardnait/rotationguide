@@ -14,18 +14,13 @@
 
 namespace Magekc\CustomPrice\Model;
 
-use Magento\Framework\Pricing\PriceCurrencyInterface;
-use Magento\Framework\Pricing\Currency\CurrencyInterface;
+use Magento\Framework\Pricing\PriceCurrency as CorePriceCurrency;
 
-class PriceCurrency implements PriceCurrencyInterface
+class PriceCurrency extends CorePriceCurrency
 {
-    protected $currency;
-
-    public function __construct(CurrencyInterface $currency)
-    {
-        $this->currency = $currency;
-    }
-
+    /**
+     * Override format to round off decimals
+     */
     public function format(
         $amount,
         $includeContainer = true,
@@ -36,13 +31,13 @@ class PriceCurrency implements PriceCurrencyInterface
         // Round to nearest whole number
         $roundedAmount = round($amount);
 
-        return $this->currency->format(
+        return parent::format(
             $roundedAmount,
-            ['precision' => 0],
             $includeContainer,
+            0, // force precision = 0
             $scope,
             $currency
         );
     }
-
 }
+
