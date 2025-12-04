@@ -10,4 +10,5 @@
         <plugin name="magekc_customprice_round_format"
                 type="Magekc\CustomPrice\Plugin\PriceCurrencyPlugin"
                 sortOrder="10"/>
+    </type>
 </config>
