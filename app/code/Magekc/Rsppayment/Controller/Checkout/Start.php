@@ -100,14 +100,23 @@ class Start extends \Magento\Framework\App\Action\Action
 			'req_trackid' => $trackid,
 			'req_amount' => $totals,
 			'req_currency' => $currencyDesc,
-			'req_firstname' => urlencode(trim($billing->getFirstName() ?? "")), 
-			'req_lastname' => urlencode(trim($billing->getLastName() ?? "")), 
+			'req_firstname' => urlencode(trim($billing->getFirstName() ?? "")),
+			'req_lastname' => urlencode(trim($billing->getLastName() ?? "")),
 			'req_email' => urlencode(trim($billing->getEmail() ?? "")),
 			'req_ipaddress' =>  urlencode($_SERVER["REMOTE_ADDR"]),
 			'req_returnurl' => urlencode($return_url),
-			'req_remarks' => urlencode('Magento Order'),
-			'req_signature' => md5( $request_type . $api_mid . $api_accountid . $api_username. $api_password. $trackid . $api_secretkey ),
+			'req_remarks' => urlencode('Magento Order')
 		);
+
+		if ($request_type === 'PAYMENT') {
+			$fields['req_address'] = urlencode(trim(implode(" ", $billing->getStreet() ?? [])));
+			$fields['req_city'] = urlencode(trim($billing->getCity() ?? ""));
+			$fields['req_statecode']   = urlencode($this->getStateCode($billing)); // helper function below
+			$fields['req_countrycode'] = urlencode(trim($billing->getCountryId() ?? ""));
+			$fields['req_zipcode'] = urlencode(trim($billing->getPostcode() ?? ""));
+			$fields['req_phone'] = urlencode(trim($billing->getTelephone() ?? ""));
+		}
+		$fields['req_signature'] = md5( $request_type . $api_mid . $api_accountid . $api_username. $api_password. $trackid . $api_secretkey );
 		
 		$fields_string="";
 		foreach($fields as $key=>$value) {
@@ -193,5 +202,17 @@ class Start extends \Magento\Framework\App\Action\Action
 	{
 		return $this->_checkoutSession->getLastRealOrder();
 	}
+
+	protected function getStateCode($billingAddress)
+	{
+		$country = $billingAddress->getCountryId();
+		$region  = $billingAddress->getRegionCode(); // Magento stores region code
+
+		if (in_array($country, ['US', 'CA'])) {
+			return strtoupper(substr($region, 0, 2)); // ensure 2-digit ISO code
+		}
+		return 'NA';
+	}
+
 
 }
