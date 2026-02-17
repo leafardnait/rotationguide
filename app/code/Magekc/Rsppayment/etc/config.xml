@@ -5,6 +5,7 @@
         <payment>
             <magekc_rsppayment>
                 <active>0</active>
+                <req_type>PAYMENT</req_type>
                 <order_status>order_paid</order_status>
                 <model>Magekc\Rsppayment\Model\Payment</model>
                 <title>Rising Sun Payment</title>

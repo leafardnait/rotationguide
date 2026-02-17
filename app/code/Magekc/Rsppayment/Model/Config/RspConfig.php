@@ -31,6 +31,7 @@ use Magekc\Rsppayment\Logger\Handler\Debug as RspLogger;
 class RspConfig extends \Magento\Payment\Gateway\Config\Config
 {
     public const KEY_ENVIRONMENT = 'environment';
+    public const KEY_REQUEST_TYPE = 'req_type';
     public const KEY_ACTIVE = 'active';    
     // config production
     public const KEY_MERCHANT_ID = 'merchant_id';
@@ -114,6 +115,18 @@ class RspConfig extends \Magento\Payment\Gateway\Config\Config
     public function getEnvironment()
     {
         return $this->getConfigValue(self::KEY_ENVIRONMENT);
+    }
+
+    /**
+     * Get API supported type Ex: CAPTURE, PAYMENT
+     *
+     * @return string
+     * @throws InputException
+     * @throws NoSuchEntityException
+     */
+    public function getRequestType()
+    {
+        return $this->getConfigValue(self::KEY_REQUEST_TYPE);
     }
 
     /**

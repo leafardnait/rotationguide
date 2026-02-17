@@ -76,6 +76,7 @@ class Start extends \Magento\Framework\App\Action\Action
 			$billing = $order->getShippingAddress();
 		}
 		
+		$request_type =  trim($this->_rspConfig->getRequestType() ?? "");
 		$gateway_url =  trim($this->_rspConfig->getMerchantGatewayUrl() ?? "");
 		$return_url =  trim($this->_rspConfig->getCallbackUrl() ?? "");
 		$api_mid = trim($this->_rspConfig->getMerchantId() ?? "");
@@ -91,7 +92,7 @@ class Start extends \Magento\Framework\App\Action\Action
 		$currencyDesc = $order->getBaseCurrencyCode();
 
 		$fields = array(
-			'req_type' => 'PAYMENT',
+			'req_type' => $request_type,
 			'req_mid' => $api_mid,
 			'req_accountid' => $api_accountid,
 			'req_username' => $api_username,
@@ -105,9 +106,9 @@ class Start extends \Magento\Framework\App\Action\Action
 			'req_ipaddress' =>  urlencode($_SERVER["REMOTE_ADDR"]),
 			'req_returnurl' => urlencode($return_url),
 			'req_remarks' => urlencode('Magento Order'),
-			'req_signature' => md5( 'PAYMENT' . $api_mid . $api_accountid . $api_username. $api_password. $trackid . $api_secretkey ),
+			'req_signature' => md5( $request_type . $api_mid . $api_accountid . $api_username. $api_password. $trackid . $api_secretkey ),
 		);
-
+		
 		$fields_string="";
 		foreach($fields as $key=>$value) {
 				$fields_string .= $key.'='.$value.'&';
@@ -115,7 +116,7 @@ class Start extends \Magento\Framework\App\Action\Action
 		$fields_string = substr($fields_string,0,-1);
 
 		$result = $this->_rspConfig->sendApiPaymentTransaction($fields_string);
-
+		
 		if( strlen(@$result) > 0 ){
 			$res_code = '';
 			$res_message = '';
@@ -171,6 +172,13 @@ class Start extends \Magento\Framework\App\Action\Action
 						</script>
 					</form>';
 				}
+			} else {
+				if ($res_description) {
+					$this->messageManager->addErrorMessage(__($res_message .' : '.$res_description));
+				} else {
+					$this->messageManager->addErrorMessage(__('Payment failed or invalid response.'));
+				}
+				return $this->_redirect('checkout/cart');
 			}
 		}
         

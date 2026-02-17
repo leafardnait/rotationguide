@@ -26,7 +26,8 @@
                     </depends>
                     <source_model>Magekc\Rsppayment\Model\Adminhtml\Source\Environment</source_model>
                 </field>
-                <field id="order_status" translate="label" type="select" sortOrder="120" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                
+                <field id="order_status" translate="label" type="select" sortOrder="120" showInDefault="1" showInWebsite="1" showInStore="1">
                     <label>New Order Status</label>
                     <depends>
                         <field id="active">1</field>
@@ -77,6 +78,13 @@
                         <field id="environment">production</field>
                         <field id="active">1</field>
                     </depends>
+                </field>
+                <field id="req_type" translate="label" type="select" sortOrder="152" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Api Supported Type</label>
+                    <depends>
+                        <field id="active">1</field>
+                    </depends>
+                    <source_model>Magekc\Rsppayment\Model\Adminhtml\Source\SupportedType</source_model>
                 </field>
                 <!-- Staging -->
                 <field id="test_merchant_id" translate="label" sortOrder="155" showInDefault="1" showInWebsite="1" showInStore="1">
