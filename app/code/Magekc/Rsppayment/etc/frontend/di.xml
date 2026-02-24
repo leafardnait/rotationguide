@@ -17,4 +17,21 @@
         </arguments>
     </type>
 
+<!-- for Credit Card Form -->
+    <virtualType name="Magekc\Rsppayment\Model\ConfigProviderCC" type="Magento\Payment\Model\CcGenericConfigProvider">
+        <arguments>
+            <argument name="methodCodes" xsi:type="array">
+                <item name="magekc_rsppayment_cc" xsi:type="const">Magekc\Rsppayment\Model\PaymentCC::CODE</item>
+            </argument>
+        </arguments>
+    </virtualType>
+
+    <type name="Magento\Checkout\Model\CompositeConfigProvider">
+        <arguments>
+            <argument name="configProviders" xsi:type="array">
+                <item name="magekc_rsppayment_cc_config_provider" xsi:type="object">Magekc\Rsppayment\Model\ConfigProviderCC</item>
+            </argument>
+        </arguments>
+    </type>
+
 </config>

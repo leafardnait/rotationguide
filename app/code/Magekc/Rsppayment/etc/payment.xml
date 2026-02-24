@@ -4,5 +4,8 @@
         <method name="magekc_rsppayment">
             <allow_multiple_address>1</allow_multiple_address>
         </method>
+        <method name="magekc_rsppayment_cc">
+            <allow_multiple_address>1</allow_multiple_address>
+        </method>
     </methods>
 </payment>

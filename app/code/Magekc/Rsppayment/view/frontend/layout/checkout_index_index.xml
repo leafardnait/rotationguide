@@ -25,6 +25,14 @@
                                                                         </item>
                                                                     </item>
                                                                 </item>
+                                                                <item name="magekc_rsppayment_cc-payments" xsi:type="array">
+                                                                    <item name="component" xsi:type="string">Magekc_Rsppayment/js/view/payment/rsppayment-payments-cc</item>
+                                                                    <item name="methods" xsi:type="array">
+                                                                        <item name="magekc_rsppayment_cc" xsi:type="array">
+                                                                            <item name="isBillingAddressRequired" xsi:type="boolean">true</item>
+                                                                        </item>
+                                                                    </item>
+                                                                </item>
                                                             </item>
                                                         </item>
                                                     </item>

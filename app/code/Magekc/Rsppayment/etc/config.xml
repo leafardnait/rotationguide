@@ -12,6 +12,17 @@
                 <allowspecific>0</allowspecific>
                 <min_order_total>0.50</min_order_total>
             </magekc_rsppayment>
+            <magekc_rsppayment_cc>
+                <active>0</active>
+                <order_status>order_paid</order_status>
+                <model>Magekc\Rsppayment\Model\PaymentCC</model>
+                <payment_action>authorize_capture</payment_action>
+                <title>Rising Sun Payment</title>
+                <api_key backend_model="Magento\Config\Model\Config\Backend\Encrypted" />
+                <cctypes>AE,VI,MC,DI,JCB</cctypes>
+                <allowspecific>0</allowspecific>
+                <min_order_total>0.50</min_order_total>
+            </magekc_rsppayment_cc>
         </payment>
     </default>
 </config>
