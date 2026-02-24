@@ -188,15 +188,24 @@
                 </field>
                 <field id="title" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
                     <label>Title</label>
+                    <depends>
+                        <field id="active">1</field>
+                    </depends>
                 </field>
                 <field id="environment" translate="label" type="select" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
                     <label>Environment</label>
                     <source_model>Magekc\Rsppayment\Model\Adminhtml\Source\Environment</source_model>
+                    <depends>
+                        <field id="active">1</field>
+                    </depends>
                 </field>
                 
                 <field id="payment_action" translate="label" type="select" sortOrder="110" showInDefault="1" showInWebsite="1" showInStore="0">
                     <label>Payment Action</label>
                     <source_model>Magekc\Rsppayment\Model\Adminhtml\Source\PaymentAction</source_model>
+                    <depends>
+                        <field id="active">1</field>
+                    </depends>
                 </field>
                 <field id="order_status" translate="label" type="select" sortOrder="120" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
                     <label>New Order Status</label>
@@ -205,24 +214,30 @@
                 <field id="cctypes" translate="label" type="multiselect" sortOrder="125" showInDefault="1" showInWebsite="1" showInStore="0">
                     <label>Credit Card Types</label>
                     <source_model>Magekc\Rsppayment\Model\Adminhtml\Source\Cctype</source_model>
+                    <depends>
+                        <field id="active">1</field>
+                    </depends>
                 </field>
                 <!-- Live cred -->
                 <field id="merchant_id" translate="label" sortOrder="126" showInDefault="1" showInWebsite="1" showInStore="1">
                     <label>Merchant ID</label>
                     <depends>
                         <field id="environment">production</field>
+                        <field id="active">1</field>
                     </depends>
                 </field>
                 <field id="account_id" translate="label" sortOrder="130" showInDefault="1" showInWebsite="1" showInStore="1">
                     <label>Account ID</label>
                     <depends>
                         <field id="environment">production</field>
+                        <field id="active">1</field>
                     </depends>
                 </field>
                 <field id="username" translate="label" sortOrder="135" showInDefault="1" showInWebsite="1" showInStore="1">
                     <label>Username</label>
                     <depends>
                         <field id="environment">production</field>
+                        <field id="active">1</field>
                     </depends>
                 </field>
                 <field id="password" translate="label" type="obscure" sortOrder="140" showInDefault="1" showInWebsite="1" showInStore="1">
@@ -230,6 +245,7 @@
                     <backend_model>Magento\Config\Model\Config\Backend\Encrypted</backend_model>
                     <depends>
                         <field id="environment">production</field>
+                        <field id="active">1</field>
                     </depends>
                 </field>
                 <field id="merchant_secret_key" translate="label" type="obscure" sortOrder="150" showInDefault="1" showInWebsite="1" showInStore="1">
@@ -237,12 +253,14 @@
                     <backend_model>Magento\Config\Model\Config\Backend\Encrypted</backend_model>
                     <depends>
                         <field id="environment">production</field>
+                        <field id="active">1</field>
                     </depends>
                 </field>
                 <field id="merchant_gateway_url" translate="label" sortOrder="151" showInDefault="1" showInWebsite="1" showInStore="1">
                     <label>Api Gateway Url</label>
                     <depends>
                         <field id="environment">production</field>
+                        <field id="active">1</field>
                     </depends>
                 </field>
                 <!-- Staging -->
@@ -250,18 +268,21 @@
                     <label>Sandbox Merchant ID</label>
                     <depends>
                         <field id="environment">sandbox</field>
+                        <field id="active">1</field>
                     </depends>
                 </field>
                 <field id="test_account_id" translate="label" sortOrder="160" showInDefault="1" showInWebsite="1" showInStore="1">
                     <label>Sandbox Account ID</label>
                     <depends>
                         <field id="environment">sandbox</field>
+                        <field id="active">1</field>
                     </depends>
                 </field>
                 <field id="test_username" translate="label" sortOrder="165" showInDefault="1" showInWebsite="1" showInStore="1">
                     <label>Sandbox Username</label>
                     <depends>
                         <field id="environment">sandbox</field>
+                        <field id="active">1</field>
                     </depends>
                 </field>
                 <field id="test_password" translate="label" type="obscure" sortOrder="170" showInDefault="1" showInWebsite="1" showInStore="1">
@@ -276,12 +297,14 @@
                     <backend_model>Magento\Config\Model\Config\Backend\Encrypted</backend_model>
                     <depends>
                         <field id="environment">sandbox</field>
+                        <field id="active">1</field>
                     </depends>
                 </field>
                 <field id="test_merchant_gateway_url" translate="label" sortOrder="176" showInDefault="1" showInWebsite="1" showInStore="1">
                     <label>Test Api Gateway Url</label>
                     <depends>
                         <field id="environment">sandbox</field>
+                        <field id="active">1</field>
                     </depends>
                 </field>
                 <!-- End staging -->
@@ -289,18 +312,30 @@
                        showInWebsite="1" showInStore="0">
                     <label>Payment From Applicable Countries</label>
                     <source_model>Magento\Payment\Model\Config\Source\Allspecificcountries</source_model>
+                    <depends>
+                        <field id="active">1</field>
+                    </depends>
                 </field>
                 <field id="specificcountry" translate="label" type="multiselect" sortOrder="185" showInDefault="1"
                        showInWebsite="1" showInStore="0">
                     <label>Payment From Specific Countries</label>
                     <source_model>Magento\Directory\Model\Config\Source\Country</source_model>
+                    <depends>
+                        <field id="active">1</field>
+                    </depends>
                 </field>
                 <field id="min_order_total" translate="label" type="text" sortOrder="190" showInDefault="1" showInWebsite="1" showInStore="0">
                     <label>Minimum Order Total</label>
+                    <depends>
+                        <field id="active">1</field>
+                    </depends>
                 </field>
                 <field id="max_order_total" translate="label" type="text" sortOrder="195" showInDefault="1" showInWebsite="1" showInStore="0">
                     <label>Maximum Order Total</label>
                     <comment>Leave empty to disable limit</comment>
+                    <depends>
+                        <field id="active">1</field>
+                    </depends>
                 </field>
                 <field id="sort_order" translate="label" type="text" sortOrder="200" showInDefault="1" showInWebsite="1"
                        showInStore="0">
