@@ -30,7 +30,7 @@ class PriceCurrencyPlugin
         $scope = null,
         $currency = null
     ) {
-        $roundedAmount = round($amount);
+        $roundedAmount = is_numeric($amount) ? round($amount) : 0;
 
         // Force precision to 0 for display
         return $proceed($roundedAmount, $includeContainer, 0, $scope, $currency);
