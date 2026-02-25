@@ -150,9 +150,9 @@ class PaymentCC extends \Magento\Payment\Model\Method\Cc
     public function getCardTypeName(?string $code): string
     {
         $map = [
-            'VI'  => 'VISA',
+            'VI'  => 'Visa',
             'MC'  => 'MasterCard',
-            'AE'  => 'American Express',
+            'AE'  => 'AMEX',
             'DI'  => 'Discover',
             'JCB' => 'JCB',
             'OT'  => 'Other'
