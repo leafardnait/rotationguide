@@ -141,6 +141,27 @@ class PaymentCC extends \Magento\Payment\Model\Method\Cc
         return true;
     }
 
+    /**
+     * Map card type codes to readable names
+     *
+     * @param string|null $code
+     * @return string
+     */
+    public function getCardTypeName(?string $code): string
+    {
+        $map = [
+            'VI'  => 'VISA',
+            'MC'  => 'MasterCard',
+            'AE'  => 'American Express',
+            'DI'  => 'Discover',
+            'JCB' => 'JCB',
+            'OT'  => 'Other'
+        ];
+
+        return $map[$code] ?? 'Unknown';
+    }
+
+
     public function savePaymentTransaction($payment, $amount)
     {
         $order = $payment->getOrder();
@@ -158,7 +179,7 @@ class PaymentCC extends \Magento\Payment\Model\Method\Cc
             $mm = strlen($mm) != 2 ? '0'.$mm : $mm;
             $trackid = trim($order->getIncrementId()).'_'.time();
             $statecode = trim($billing->getRegionCode());
-            $type = $payment->getCcType();
+            $type = $this->getCardTypeName($payment->getCcType());
             $totals = number_format($amount, 2, '.', '');
             $currencyDesc = $order->getBaseCurrencyCode();
 
